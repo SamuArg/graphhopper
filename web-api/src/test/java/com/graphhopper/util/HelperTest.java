@@ -20,6 +20,9 @@ package com.graphhopper.util;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 import java.util.Locale;
 
 import static com.graphhopper.util.Helper.UTF_CS;
@@ -122,5 +125,25 @@ public class HelperTest {
         assertEquals(145.635986, ele, 1.e-6);
         // ... but converting back to int should yield the same value we started with!
         assertEquals(storedInt, Helper.eleToUInt(ele));
+    }
+
+    // Test the function parseList when the string is empty to check if the List is empty
+    // "" -> []
+    @Test
+    public void testParseListEmpty(){
+        String string = "";
+        List<String> result = Helper.parseList(string);
+        List<String> expected = Collections.emptyList();
+        assertEquals(expected, result);
+    }
+
+    // Test the function parseList when the string is well formatted to check if the result is correct
+    // "[1,2,3]" -> ["1","2","3"]
+    @Test
+    public void testParseList(){
+        String string = "[1,2,3]";
+        List<String> result = Helper.parseList(string);
+        List<String> expected = Arrays.asList("1","2","3");
+        assertEquals(expected, result);
     }
 }

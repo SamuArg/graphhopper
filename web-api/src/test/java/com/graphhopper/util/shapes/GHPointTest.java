@@ -20,7 +20,10 @@ package com.graphhopper.util.shapes;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrowsExactly;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * @author Peter Karich
@@ -34,5 +37,49 @@ public class GHPointTest {
         assertFalse(instance.isValid());
         instance.lon = 1;
         assertTrue(instance.isValid());
+    }
+
+    // Test if the function fromString return the correct GHPoint object
+    @Test
+    public void testFromString(){
+        String string = "12.34,34.98";
+        GHPoint point = GHPoint.fromString(string);
+        assertEquals(12.34, point.getLat());
+        assertEquals(34.98, point.getLon());
+    }
+
+    // Test if the function fromStringLonLat return the correct GHPoint object
+    @Test
+    public void testFromStringLonLat(){
+        String string = "12.34,34.98";
+        GHPoint point = GHPoint.fromStringLonLat(string);
+        assertEquals(12.34, point.getLon());
+        assertEquals(34.98, point.getLat());
+    }
+
+    // Test if the function fromString throws the right exception when calling it
+    // with a wrong string (only 1 number), it should throw IllegalArgumentException
+    @Test
+    public void testIllegalFromString(){
+        String string = "12.34";
+        Exception exception = assertThrows(IllegalArgumentException.class, ()->{
+            GHPoint.fromString(string);
+        });
+        String expectedMessage = "Cannot parse point '12.34'";
+        String actualMessage = exception.getMessage();
+        assertEquals(expectedMessage, actualMessage);
+    }
+
+    // Test if the function fromString throws the right exception when calling it
+    // with a wrong string, (non-number string), it should throw IllegalArgumentException
+    @Test
+    public void testNumberExceptionFromString(){
+        String string = "test,wrong";
+        Exception exception = assertThrows(IllegalArgumentException.class, ()->{
+            GHPoint.fromString(string);
+        });
+        String expectedMessage = "Cannot parse point 'test,wrong'";
+        String actualMessage = exception.getMessage();
+        assertEquals(expectedMessage, actualMessage);
     }
 }
