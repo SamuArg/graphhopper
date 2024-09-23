@@ -51,7 +51,7 @@ public class GHPointTest {
     // Test if the function fromStringLonLat return the correct GHPoint object
     @Test
     public void testFromStringLonLat(){
-        String string = "12.34,34.98";
+        String string = "12.34, 34.98";
         GHPoint point = GHPoint.fromStringLonLat(string);
         assertEquals(12.34, point.getLon());
         assertEquals(34.98, point.getLat());
@@ -74,11 +74,11 @@ public class GHPointTest {
     // with a wrong string, (non-number string), it should throw IllegalArgumentException
     @Test
     public void testNumberExceptionFromString(){
-        String string = "test,wrong";
+        String string = "test, wrong";
         Exception exception = assertThrows(IllegalArgumentException.class, ()->{
             GHPoint.fromString(string);
         });
-        String expectedMessage = "Cannot parse point 'test,wrong'";
+        String expectedMessage = "Cannot parse point 'test, wrong'";
         String actualMessage = exception.getMessage();
         assertEquals(expectedMessage, actualMessage);
     }
