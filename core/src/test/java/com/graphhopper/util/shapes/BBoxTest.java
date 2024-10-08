@@ -42,6 +42,36 @@ public class BBoxTest {
         assertEquals(11.4607, b.maxLon, 1e-4);
     }
 
+    //Test if the function toLessPrecisionString return the right format
+    @Test
+    public void testToLessPrecisionString(){
+        BBox b = new BBox(1.2, 1.2, 3.456, 3.943);
+        String str = 1.2f + "," + 1.2f + "," + 3.456f + "," + 3.943f;
+        String compare = b.toLessPrecisionString();
+        assertEquals(str, compare);
+    }
+    //Test if the function IsValid has lat and lon values that are lesser than their max
+    @Test
+    public void testIsValid(){
+        BBox first = new BBox(1.2, 0.9, 3.456, 3.943);
+        BBox second = new BBox(0, 3, 4.5, 0);
+        assertFalse(first.isValid());
+        assertFalse(second.isValid());
+    }
+    //Test if the function FromPoints creates the right object with the corresponding min/max for lon/lat
+    @Test
+    public void testFromPoints(){
+        double lat1 = 9.34;
+        double lat2 = 7.8;
+        double lon1 = 6.2;
+        double lon2 = 4.2;
+
+        
+        BBox b = BBox.fromPoints(lat1,lon1, lat2, lon2);
+        BBox expected = new BBox(4.2, 6.2, 7.8, 9.34 );
+        assertEquals(expected, b);
+    }
+
     @Test
     public void testContains() {
         assertTrue(new BBox(1, 2, 0, 1).contains(new BBox(1, 2, 0, 1)));
