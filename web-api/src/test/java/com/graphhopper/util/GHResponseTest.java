@@ -23,6 +23,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class GHResponseTest {
     @Test
@@ -36,5 +37,14 @@ public class GHResponseTest {
         GHResponse rsp = new GHResponse();
         rsp.add(new ResponsePath());
         assertFalse(rsp.hasErrors());
+    }
+    //Test for the function addDebugInfo making sure that you can not add a null string to the attribute debugInfo
+    @Test
+    public void testAddDebugInfo(){
+        GHResponse instance = new GHResponse();
+        assertThrows(IllegalStateException.class, () -> {
+            instance.addDebugInfo(null);
+        });
+
     }
 }
