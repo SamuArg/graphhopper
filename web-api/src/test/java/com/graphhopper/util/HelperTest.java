@@ -131,9 +131,12 @@ public class HelperTest {
     // "" -> []
     @Test
     public void testParseListEmpty(){
+        // Arrange
         String string = "";
-        List<String> result = Helper.parseList(string);
         List<String> expected = Collections.emptyList();
+        // Act
+        List<String> result = Helper.parseList(string);
+        // Assert
         assertEquals(expected, result);
     }
 
@@ -141,9 +144,12 @@ public class HelperTest {
     // "[1,2,3]" -> ["1","2","3"]
     @Test
     public void testParseList(){
+        // Arrange
         String string = "[1,2,3]";
-        List<String> result = Helper.parseList(string);
         List<String> expected = Arrays.asList("1","2","3");
+        // Act
+        List<String> result = Helper.parseList(string);
+        // Assert
         assertEquals(expected, result);
     }
 }

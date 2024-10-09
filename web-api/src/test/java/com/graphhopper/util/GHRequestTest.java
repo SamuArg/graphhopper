@@ -35,19 +35,30 @@ public class GHRequestTest {
     //Test for the function addPoint to make sure that if you try to add a null point an exception is thrown
     @Test
     public void testAddPointNullException(){
-        GHRequest instance = new GHRequest(5) ;
+        // Arrange
+        GHRequest instance = new GHRequest(5);
+        String expectedMessage = "point cannot be null";
+        // Act and Assert
         assertThrows(IllegalArgumentException.class, () -> {
             instance.addPoint(null);
         });
+        String actualMessage = exception.getMessage();
+        assertEquals(expectedMessage, actualMessage);
     }
     //Test for the function addPoint to make sure that the points are correctly added to the attribute points of the GHRequest object
     @Test
     public void testAddPoint(){
+        // Arrange
         GHRequest instance = new GHRequest(5) ;
-        GHPoint one = new GHPoint(); GHPoint two = new GHPoint();
-        List<GHPoint> points = new ArrayList<>(); points.add(one); points.add(two);
+        GHPoint one = new GHPoint();
+        GHPoint two = new GHPoint();
+        List<GHPoint> points = new ArrayList<>();
+        points.add(one);
+        points.add(two);
+        // Act
         instance.addPoint(one);
         instance.addPoint(two);
+        // Assert
         assertEquals(points, instance.getPoints());
     }
     @Test

@@ -42,8 +42,11 @@ public class GHPointTest {
     // Test if the function fromString return the correct GHPoint object
     @Test
     public void testFromString(){
+        // Arrange
         String string = "12.34,34.98";
+        // Act
         GHPoint point = GHPoint.fromString(string);
+        // Assert
         assertEquals(12.34, point.getLat());
         assertEquals(34.98, point.getLon());
     }
@@ -51,8 +54,11 @@ public class GHPointTest {
     // Test if the function fromStringLonLat return the correct GHPoint object
     @Test
     public void testFromStringLonLat(){
+        // Arrange
         String string = "12.34, 34.98";
+        // Act
         GHPoint point = GHPoint.fromStringLonLat(string);
+        // Assert
         assertEquals(12.34, point.getLon());
         assertEquals(34.98, point.getLat());
     }
@@ -61,11 +67,13 @@ public class GHPointTest {
     // with a wrong string (only 1 number), it should throw IllegalArgumentException
     @Test
     public void testIllegalFromString(){
+        // Arrange
         String string = "12.34";
+        String expectedMessage = "Cannot parse point '12.34'";
+        // Act and Assert
         Exception exception = assertThrows(IllegalArgumentException.class, ()->{
             GHPoint.fromString(string);
         });
-        String expectedMessage = "Cannot parse point '12.34'";
         String actualMessage = exception.getMessage();
         assertEquals(expectedMessage, actualMessage);
     }
@@ -74,11 +82,13 @@ public class GHPointTest {
     // with a wrong string, (non-number string), it should throw IllegalArgumentException
     @Test
     public void testNumberExceptionFromString(){
+        // Arrange
         String string = "test, wrong";
+        String expectedMessage = "Cannot parse point 'test, wrong'";
+        // Act and Assert
         Exception exception = assertThrows(IllegalArgumentException.class, ()->{
             GHPoint.fromString(string);
         });
-        String expectedMessage = "Cannot parse point 'test, wrong'";
         String actualMessage = exception.getMessage();
         assertEquals(expectedMessage, actualMessage);
     }
@@ -86,9 +96,12 @@ public class GHPointTest {
     //indexes of a doubles array
     @Test
     public void testfromJson(){
+        // Arrange
         double[] xy = {2.4, 3.1, 4.8, 8.3, 5.3};
         GHPoint expected = new GHPoint(3.1, 2.4);
+        // Act
         GHPoint point = GHPoint.fromJson(xy);
+        // Assert
         assertEquals(expected, point);
     }
 }

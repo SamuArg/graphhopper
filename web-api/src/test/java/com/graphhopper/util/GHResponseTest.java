@@ -41,10 +41,14 @@ public class GHResponseTest {
     //Test for the function addDebugInfo making sure that you can not add a null string to the attribute debugInfo
     @Test
     public void testAddDebugInfo(){
+        // Arrange
         GHResponse instance = new GHResponse();
+        String expectedMessage = "Debug information has to be none null"
+        // Act and Assert
         assertThrows(IllegalStateException.class, () -> {
             instance.addDebugInfo(null);
         });
-
+        String actualMessage = exception.getMessage();
+        assertEquals(expectedMessage, actualMessage);
     }
 }
