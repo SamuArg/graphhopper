@@ -85,7 +85,7 @@ public class GHPointTest {
     //Test if the function testfromJson is able to extract the correct indexes in order to return a new GHPoint object with the first two
     //indexes of a doubles array
     @Test
-    public void  testfromJson(){
+    public void testfromJson(){
         double[] xy = {2.4, 3.1, 4.8, 8.3, 5.3};
         GHPoint expected = new GHPoint(3.1, 2.4);
         GHPoint point = GHPoint.fromJson(xy);
