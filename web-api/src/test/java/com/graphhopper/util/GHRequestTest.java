@@ -25,12 +25,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * @author Peter Karich
  */
 public class GHRequestTest {
+    //Test for the function addPoint to make sure that if you try to add a null point an exception is thrown
+    @Test
+    public void testAddPointNullException(){
+        GHRequest instance = new GHRequest(5) ;
+        assertThrows(IllegalArgumentException.class, () -> {
+            instance.addPoint(null);
+        });
+    }
+    //Test for the function addPoint to make sure that the points are correctly added to the attribute points of the GHRequest object
+    @Test
+    public void testAddPoint(){
+        GHRequest instance = new GHRequest(5) ;
+        GHPoint one = new GHPoint(); GHPoint two = new GHPoint();
+        List<GHPoint> points = new ArrayList<>(); points.add(one); points.add(two);
+        instance.addPoint(one);
+        instance.addPoint(two);
+        assertEquals(points, instance.getPoints());
+    }
     @Test
     public void testGetHint() {
         GHRequest instance = new GHRequest(10, 12, 12, 10);
