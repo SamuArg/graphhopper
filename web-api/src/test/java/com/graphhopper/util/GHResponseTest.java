@@ -45,7 +45,7 @@ public class GHResponseTest {
         GHResponse instance = new GHResponse();
         String expectedMessage = "Debug information has to be none null";
         // Act and Assert
-        assertThrows(IllegalStateException.class, () -> {
+        Exception exception = assertThrows(IllegalStateException.class, () -> {
             instance.addDebugInfo(null);
         });
         String actualMessage = exception.getMessage();

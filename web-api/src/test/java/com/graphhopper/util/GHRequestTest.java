@@ -39,7 +39,7 @@ public class GHRequestTest {
         GHRequest instance = new GHRequest(5);
         String expectedMessage = "point cannot be null";
         // Act and Assert
-        assertThrows(IllegalArgumentException.class, () -> {
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             instance.addPoint(null);
         });
         String actualMessage = exception.getMessage();
