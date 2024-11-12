@@ -87,9 +87,5 @@ jobs:
             exit 1
           fi
 
-      - name: Install CowSay
-        run: sudo apt-get install -y cowsay
       
-      - name: Wise Words from Yoda
-        run: |
-          cowsay -f yoda "Succeeded, your build has. Strong in the CI/CD, you are. 🚀"
+
