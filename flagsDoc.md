@@ -34,3 +34,12 @@ matrix:
 5. **`-XX:+UseCompressedOops`**
    - **Fonction**: Réduction de la taille des pointeurs d'objet
    - **Justification du choix**: En activant les OOPs compressés, nous réduisons la taille des pointeurs de référence en mémoire, ce qui utilise moins de mémoire. Ceci est très utilie pour notre projet qui gère une multitude d'objets différents.
+
+### Aspect Humoristique
+
+Lorsque le workflow termine sans erreur, il est possible d'aller à une page html avec une image gif en guise de célébration.
+<img width="694" alt="image" src="https://github.com/user-attachments/assets/855a8196-e889-446b-ab3e-52a1517360d1">
+<img width="638" alt="image" src="https://github.com/user-attachments/assets/6568656d-e25b-4888-8ead-54ea8c84a282">
+
+
+
