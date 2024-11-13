@@ -87,5 +87,17 @@ jobs:
             exit 1
           fi
 
+          - name: Post Confetti GIF Comment
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          run: |
+            PR_NUMBER=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
+            GIF_URL="https://media.giphy.com/media/5xyw3mqekqOVW/giphy.gif?cid=790b76115pcwqpbfryqx4pgwk5oaojod0oeimcifrjn358nv&ep=v1_gifs_search&rid=giphy.gif&ct=g"
+          
+            curl -X POST -H "Authorization: token $GITHUB_TOKEN" \
+               -H "Accept: application/vnd.github.v3+json" \
+               https://api.github.com/repos/${{ github.repository }}/issues/$PR_NUMBER/comments \
+               -d "{\"body\": \"🎉 Congrats your code was approved! ![Confetti GIF]($GIF_URL) 🎊\"}"
+
       
 
