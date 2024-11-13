@@ -86,3 +86,10 @@ jobs:
             echo "Coverage is not improved."
             exit 1
           fi
+      - name: Page de célébration.
+        run: |
+          echo "🎉 Visite la page de célébration: https://farley-j.github.io/graphhopper/ "
+    
+      
+            
+      
